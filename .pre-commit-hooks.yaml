@@ -1,0 +1,7 @@
+- id: vcpkg-format-manifest
+  name: Format vcpkg.json files
+  description: Format vcpkg.json manifests using the vcpkg binary
+  entry: vcpkg-format-manifest
+  language: python
+  files: vcpkg\.json$
+  minimum_pre_commit_version: "2.9.0"
