@@ -40,7 +40,9 @@ def get_vcpkg_binary() -> Path:
 def format_manifest_vcpkg_json(filename: str, vcpkg_binary: Path) -> bool:
     """Format a single vcpkg.json file."""
     result = subprocess.run(
-        [str(vcpkg_binary), "format-manifest", filename], capture_output=True, text=True
+        [str(vcpkg_binary), "format-manifest", "--x-wait-for-lock", filename],
+        capture_output=True,
+        text=True,
     )
 
     if result.returncode != 0:
