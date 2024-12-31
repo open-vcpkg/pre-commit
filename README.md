@@ -19,7 +19,7 @@ Add this to your `.pre-commit-config.yaml`:
 ```yaml
 repos:
 -   repo: https://github.com/open-vcpkg/pre-commit
-    rev: v1.0.0  # Use the ref you want to point at
+    rev: v1.0.1  # Use the ref you want to point at
     hooks:
     -   id: vcpkg-format-manifest
 ```
