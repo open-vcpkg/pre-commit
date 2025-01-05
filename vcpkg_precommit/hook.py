@@ -1,6 +1,8 @@
 import argparse
+import os
 import platform
 import subprocess
+import tempfile
 from pathlib import Path
 from typing import Optional, Sequence
 from urllib.request import urlretrieve
@@ -13,8 +15,8 @@ def get_vcpkg_binary() -> Path:
 
     binary_map = {
         ("windows", "amd64"): ("vcpkg.exe", "vcpkg-windows-x64.exe"),
-        ("linux", "x86_64"): ("vcpkg", "vcpkg-linux"),
-        ("darwin", "arm64"): ("vcpkg", "vcpkg-macos-arm64"),
+        ("linux", "x86_64"): ("vcpkg", "vcpkg-glibc"),
+        ("darwin", "arm64"): ("vcpkg", "vcpkg-macos"),
         ("darwin", "x86_64"): ("vcpkg", "vcpkg-macos"),
     }
 
@@ -39,6 +41,7 @@ def get_vcpkg_binary() -> Path:
 
 def format_manifest_vcpkg_json(filename: str, vcpkg_binary: Path) -> bool:
     """Format a single vcpkg.json file."""
+    os.environ["VCPKG_ROOT"] = tempfile.TemporaryDirectory().name
     result = subprocess.run(
         [str(vcpkg_binary), "format-manifest", "--x-wait-for-lock", filename],
         capture_output=True,
