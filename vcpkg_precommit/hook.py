@@ -1,4 +1,5 @@
 import argparse
+import os
 import platform
 import subprocess
 from pathlib import Path
@@ -39,6 +40,7 @@ def get_vcpkg_binary() -> Path:
 
 def format_manifest_vcpkg_json(filename: str, vcpkg_binary: Path) -> bool:
     """Format a single vcpkg.json file."""
+    os.environ["VCPKG_ROOT"] = "/__dummy_vcpkg_root"
     result = subprocess.run(
         [str(vcpkg_binary), "format-manifest", "--x-wait-for-lock", filename],
         capture_output=True,
