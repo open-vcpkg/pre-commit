@@ -12,9 +12,9 @@ def get_vcpkg_binary() -> Path:
     machine = platform.machine().lower()
 
     binary_map = {
-        ("windows", "amd64"): ("vcpkg.exe", "vcpkg-windows-x64.exe"),
-        ("linux", "x86_64"): ("vcpkg", "vcpkg-linux"),
-        ("darwin", "arm64"): ("vcpkg", "vcpkg-macos-arm64"),
+        ("windows", "amd64"): ("vcpkg.exe", "vcpkg.exe"),
+        ("linux", "x86_64"): ("vcpkg", "vcpkg-glibc"),
+        ("darwin", "arm64"): ("vcpkg", "vcpkg-macos"),
         ("darwin", "x86_64"): ("vcpkg", "vcpkg-macos"),
     }
 
